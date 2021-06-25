@@ -160,7 +160,6 @@ CREATE TABLE "Distributor"
 --------------------------------------------------------
 -- Constraints
 --------------------------------------------------------
--- TODO FOREIGN KEY on person oder patient
 ALTER TABLE "Vaccine_shot" ADD FOREIGN KEY ("patient_id") REFERENCES "Patient" ("person_id") ENABLE;
 ALTER TABLE "Vaccine_shot" ADD FOREIGN KEY ("doctor_id") REFERENCES "Doctor" ("person_id") ENABLE;
 ALTER TABLE "Vaccine_shot" ADD FOREIGN KEY ("vaccination_centre_id") REFERENCES "Vaccination_centre" ("id") ENABLE;
