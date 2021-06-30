@@ -134,6 +134,7 @@ CREATE TABLE Package_delivery
 CREATE TABLE Warehouse
 (
     id NUMBER NOT NULL, 
+    name VARCHAR2(255),
     CONSTRAINT warehouse_pk PRIMARY KEY (id)
 );
 --------------------------------------------------------
