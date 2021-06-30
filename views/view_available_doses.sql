@@ -1,4 +1,4 @@
-CREATE OR REPLACE VIEW available_doses
+CREATE OR REPLACE VIEW available_doses AS
 SELECT coalesce(vcname, wname) AS name, coalesce(v1.vaccines_delivered - v2.vaccines_administered, v1.vaccines_delivered - v3.vaccines_departed) AS available
 FROM (
 	SELECT addressee_id, vc.name as vcname, w.name AS wname, SUM(num_shots) AS vaccines_delivered FROM package_delivery pd 
