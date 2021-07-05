@@ -37,7 +37,16 @@ ON v1.addressee_id = v3.addressee_id;
 /** Description: Anzahl Appointments pro Center mit Anzahl lagernden Impfdosen
 /**
 /*********************************************************************/
-
+select name, sum(vaccine_package.num_shots) as shots, p.shots as appointmnets from package_delivery
+  join vaccination_centre vc on vc.id = package_delivery.addressee_id
+  join vaccine_package on package_delivery.vaccine_package_id = vaccine_package.id
+  join (
+    select vaccination_centre.id as vcid, count(vaccine_shot.id) as shots from vaccination_centre 
+    join vaccine_shot on vaccine_shot.vaccination_centre_id = vaccination_centre.id
+    group by vaccination_centre.id
+  ) p on p.vcid = vc.id
+  group by name, p.shots;
+  
 /*********************************************************************
 /**
 /** Table: TODO
