@@ -2,7 +2,7 @@
 /**
 /** Table: available_doses
 /** Developer: Tomondi
-/** Description: TODO
+/** Description: Zeigt die Anzahl der zur verfügung stehenden Impfdosen je Warehouse oder Vaccination Centre an
 /**
 /*********************************************************************/
 CREATE OR REPLACE VIEW available_doses AS
@@ -32,28 +32,24 @@ ON v1.addressee_id = v3.addressee_id;
 
 /*********************************************************************
 /**
-/** Table: TODO
+/** Table: appointments_per_center
 /** Developer: Weidele
 /** Description: Anzahl Appointments pro Center mit Anzahl lagernden Impfdosen
 /**
 /*********************************************************************/
-select name, sum(vaccine_package.num_shots) as shots, p.shots as appointmnets from package_delivery
-  join vaccination_centre vc on vc.id = package_delivery.addressee_id
-  join vaccine_package on package_delivery.vaccine_package_id = vaccine_package.id
-  join (
-    select vaccination_centre.id as vcid, count(vaccine_shot.id) as shots from vaccination_centre 
-    join vaccine_shot on vaccine_shot.vaccination_centre_id = vaccination_centre.id
-    group by vaccination_centre.id
-  ) p on p.vcid = vc.id
-  group by name, p.shots;
+create or replace view appointments_per_center
+as
+	select name, sum(vaccine_package.num_shots) as shots, p.shots as appointmnets from package_delivery
+		join vaccination_centre vc on vc.id = package_delivery.addressee_id
+		join vaccine_package on package_delivery.vaccine_package_id = vaccine_package.id
+		join (
+			select vaccination_centre.id as vcid, count(vaccine_shot.id) as shots from vaccination_centre 
+			join vaccine_shot on vaccine_shot.vaccination_centre_id = vaccination_centre.id
+			group by vaccination_centre.id
+		) p on p.vcid = vc.id
+  	group by name, p.shots;
   
-/*********************************************************************
-/**
-/** Table: TODO
-/** Developer: Weidele
-/** Description: Anzahl Impfstoffe gruppiert nach Hersteller pro Center/Regional Warehouse
-/**
-/*********************************************************************/
+
 
 /*********************************************************************
 /**
@@ -62,18 +58,28 @@ select name, sum(vaccine_package.num_shots) as shots, p.shots as appointmnets fr
 /** Description: Nebenwirkungen pro Altersgruppe und Geschlecht
 /**
 /*********************************************************************/
-select effect, sex, count(person.id) as anzahl from reported_side_effect
-  join side_effect_type on side_effect_type_id = side_effect_type.id
-  join vaccine_shot on reported_side_effect.vaccine_shot_id = vaccine_shot.id
-  join patient on patient.person_id = vaccine_shot.patient_id
-  join person on patient.person_id = person.id
-  group by effect, sex;
+create or replace side_effects_sex
+as
+	select effect, sex, count(person.id) as anzahl from reported_side_effect
+	join side_effect_type on side_effect_type_id = side_effect_type.id
+	join vaccine_shot on reported_side_effect.vaccine_shot_id = vaccine_shot.id
+	join patient on patient.person_id = vaccine_shot.patient_id
+	join person on patient.person_id = person.id
+	group by effect, sex;
 
 
 /*********************************************************************
 /**
-/** Table: TODO
+/** Table: side_effects_by_manufacturer
 /** Developer: Weidele
-/** Description: Public view: anzahl fixierter appointments im Verhältnis zu verfügbaren Impfdosen
+/** Description: Anzahl der aufgetretenen Nebenwirkungen nach Hersteller
 /**
 /*********************************************************************/
+create or replace view side_effects_by_manufacturer
+as
+  select count(*) Anzahl, manufacturer.name from reported_side_effect 
+    join side_effect_type on reported_side_effect.side_effect_type_id = side_effect_type.id
+    join vaccine_shot on reported_side_effect.vaccine_shot_id = vaccine_shot.id
+    join vaccine_package on vaccine_shot.vaccine_package_id = vaccine_package.id
+    join manufacturer on vaccine_package.manufacturer_id = manufacturer.id
+    group by manufacturer.name;
