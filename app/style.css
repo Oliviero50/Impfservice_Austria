@@ -1,0 +1,24 @@
+body {
+	font-family: Raleway;
+}
+
+h5 {
+	color: dimgray;
+	font-size:15px;
+}
+
+.block {
+	background: #f2f2f2;
+	padding:50px;
+	border-radius:10px;
+}
+
+.block-sm {
+	background: #f2f2f2;
+	margin-bottom:20px;
+	border-radius:10px;
+}
+
+.header {
+	font-weight: 900;
+}
