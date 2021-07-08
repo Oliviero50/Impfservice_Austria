@@ -18,35 +18,43 @@ let one = new Vue({
 
 	},
 	mounted: ()=>{
+		this._getRequest('/getPersons', this.persons);
+		this._getRequest('/getTeilimmunisierteCount', this.teilimmunisierte);
+		this._getRequest('/getVollimmunisierteCount', this.vollimmunisierte);
+		this._getRequest('/getVaccineShotsCount', this.num_vaccine_shots);
+		this._getRequest('/getDeliveredDosesCount', this.delivered_doses)
+		this._getRequest('/getVaccinationCentresList', this.vaccination_centres);
+		this._getRequest('/getDoctorsList', this.doctors);		
+		this._getRequest('/getManufacturerShotsList', this.shots_manufacturer);
+		this._getRequest('/getShotsSexList', this.shots_sex);
+		this._getRequest('/getVaccinePackagesList', this.vac_packages);
 
 	},
 	watch: {
 
 	},
-
 	methods: {
 		renderList: (type) => {
 			let request = undefined;
 			switch(type) {
 				case 1:
-					request = '';
-				break;
+					request = '/getShotsList'; break;
 				case 2:
-					request = '';
-				break;
+					request = '/getAvailableDosesList'; break;
 				case 3:
-					request = '';
-				break;
+					request = '/getAppointmentsAndDoses'; break;
 				case 4:
-					request = '';
-				break;
+					request = '/getSideEffectsSexCount'; break;
 			}
 			//Request
-			axios.get('')
+			this._getRequest(request, this.main_list);
+		},
+		_getRequest: (url, result) => {
+			axios.get(this.api +'')
 				.then((response)=>{
 					if(response.data.error) console.log(response.data.message);
 					else {
-						this.main_list = response.data.rows;
+						result = response.data.rows;
 					}
 				});
 		}
