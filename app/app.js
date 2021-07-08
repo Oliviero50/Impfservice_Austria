@@ -2,36 +2,55 @@
 let one = new Vue({
 	el:"#vue-app-one",
 	data: {
-		act_columns: ['Vorname', 'Nachname', 'Alter', 'Geschlecht', 'Dosis', 'Impfung'],
-		act_rows: [['Max', 'Mustermann', 24, 'M', 2, 'Pfizer']]
+		vollimmunisierte: 0,
+		teilimmunisierte: 0,
+		num_vaccine_shots: 0,
+		delivered_doses: 0,
+		main_list: [],
+		persons: [{id:1, name: 'Max Mustermann'}],
+		vaccination_centres: [],
+		doktors:[],
+		shots_manufacturer: [],
+		shots_sex:[],
+		vac_packages:[]
 	},
 	computed: {
 
 	},
-	mounted: function(){
+	mounted: ()=>{
 
 	},
 	watch: {
 
 	},
-	created () {
-	},
+
 	methods: {
-		
-		getNotes: function() {
-			axios.get('api/notes.php')
-				.then(function(response){
-					if(response.data.error){
-						console.log(response.data.message);
-					}
-					else{
-						one.get_notes = response.data.notes;
-						
+		renderList: (type) => {
+			let request = undefined;
+			switch(type) {
+				case 1:
+					request = '';
+				break;
+				case 2:
+					request = '';
+				break;
+				case 3:
+					request = '';
+				break;
+				case 4:
+					request = '';
+				break;
+			}
+			//Request
+			axios.get('')
+				.then((response)=>{
+					if(response.data.error) console.log(response.data.message);
+					else {
+						this.main_list = response.data.rows;
 					}
 				});
-		},
-		
 		}
+	}
 
 });
 

@@ -38,21 +38,21 @@
 				<div class="col">
 					<div class="block">
 						<h5>Ausgelieferte Impfdosen</h5>
-						<h4>50</h4>
+						<h4>{{delivered_doses}}</h4>
 					</div>
 				
 					<div class="block">
 						<h5>Verabreichte Impfdosen</h5>
-						<h4>50</h4>
+						<h4>{{num_vaccine_shots}}</h4>
 					</div>
 					<div class="block">
 						<h5>Teilimmunisierte</h5>
-						<h4>50</h4>
+						<h4>{{teilimmunisierte}}</h4>
 					</div>
 			
 					<div class="block">
 						<h5>Vollimunisierte</h5>
-						<h4>34</h4>
+						<h4>{{vollimmunisierte}}</h4>
 					</div>
 				</div>
 				<div class="col">
@@ -62,7 +62,16 @@
    <div class="form-group">
     <label>Person auswahlen</label>
     <select class="form-control" id="person">
-      <option>1</option>
+	<option value="">Person auswahlen</option>
+      <option v-for='person in persons' :value="person.id">{{person.name}}</option>
+    </select>
+  </div>
+  
+   <div class="form-group">
+    <label>Impfzentrum auswahlen</label>
+    <select class="form-control" id="impfzentrum">
+     <option value="">Impfzentrum auswahlen</option>
+      <option v-for='centre in vaccination_centres' :value="centre.id">{{centre.name}}</option>
     </select>
   </div>
   
@@ -70,22 +79,17 @@
    <div class="form-group">
     <label>Impfpaket auswahlen</label>
     <select class="form-control" id="impfung">
-      <option>1</option>
+     <option value="">Impfpaket auswahlen</option>
+      <option v-for='package in vac_packages' :value="package.id">{{package.id}}</option>
     </select>
   </div>
   
-  
-   <div class="form-group">
-    <label>Impfzentrum auswahlen</label>
-    <select class="form-control" id="impfzentrum">
-      <option>1</option>
-    </select>
-  </div>
-  
+ 
     <div class="form-group">
     <label>Doktor auswahlen</label>
     <select class="form-control" id="doktor">
-      <option>1</option>
+      <option value="">Doktor auswahlen</option>
+      <option v-for='doktor in doktors' :value="doktor.id">{{doktor.name}}</option>
     </select>
   </div>
   
@@ -97,22 +101,7 @@
 			<hr/>
 			<br/>
 		<div class="row text-center">
-		<div class="col">
-						<h5>Geimpfte pro Altersgruppe</h5>
-						<table class="table table-striped">
-						<thead>
-							<th>Altersgruppe</th>
-							<th>Anzahl</th>
-							</thead>
-							<tbody>
-							<tr>
-							<td>12 - 24</td>
-							<td>0</td>
-							</tr>
-							</tbody>
-						</table>
-				</div>
-		<div class="col">
+				<div class="col">
 						<h5>Verimpfte Dosen pro Hersteller</h5>
 						<table class="table table-striped">
 						<thead>
@@ -120,29 +109,25 @@
 							<th>Dosen</th>
 							</thead>
 							<tbody>
-							<tr>
-							<td>Pfizer</td>
-							<td>0</td>
+							<tr v-for="(value, name) in shots_manufacturer">
+							<td>{{name}}</td>
+							<td>{{value}}</td>
 							</tr>
 							</tbody>
 						</table>
 				</div>
 					<div class="col">
 
-						<h5>Geimpfte pro Geschlecht</h5>
+						<h5>Geimpfte Dosen pro Geschlecht</h5>
 						<table class="table table-striped">
 						<thead>
 							<th>Geschlect</th>
 							<th>Dosen</th>
 							</thead>
 							<tbody>
-							<tr>
-							<td>Male</td>
-							<td>0</td>
-							</tr>
-							<tr>
-							<td>Female</td>
-							<td>0</td>
+							<tr v-for="(value, name) in shots_sex">
+							<td>{{name}}</td>
+							<td>{{value}}</td>
 							</tr>
 							</tbody>
 						</table>
@@ -154,11 +139,10 @@
 		<br>
 		<div class="row">
 			<div class="col text-center">
-			<button class="btn btn-outline-primary active">Geimpfte</button>
-			<button class="btn btn-outline-primary">Verfugbare Dosen</button>
-			<button class="btn btn-outline-primary">Termine und Dosen</button>
-			<button class="btn btn-outline-primary">Nebenwirkungen nach Geschlecht</button>
-			<button class="btn btn-outline-primary">Nebenwirkungen nach Hersteller</button>
+			<button class="btn btn-outline-primary active" v-on:click='renderList(1)'>Verabreichte</button>
+			<button class="btn btn-outline-primary" v-on:click='renderList(2)'>Verfugbare Dosen</button>
+			<button class="btn btn-outline-primary" v-on:click='renderList(3)'>Termine und Dosen</button>
+			<button class="btn btn-outline-primary" v-on:click='renderList(4)'>Nebenwirkungen nach Geschlecht</button>
 			</div>
 		</div>
 		<br>
@@ -166,11 +150,11 @@
 			<div class="col">
 				<table class="table table-striped">
 					<thead>
-					<th v-for="column in act_columns">{{column}}</th>
+					<th v-for="(value, name) in main_list[0]">{{name}}</th>
 					</thead>
 					<tbody>
-					<tr v-for='row in act_rows'>
-						<td v-for='data in row'>{{data}}</td>
+					<tr v-for='row in main_list'>
+						<td v-for='(value, name) in row'>{{value}}</td>
 					</tr>
 					</tbody>
 				</table>
