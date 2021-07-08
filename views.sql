@@ -58,7 +58,7 @@ as
 /** Description: Nebenwirkungen pro Altersgruppe und Geschlecht
 /**
 /*********************************************************************/
-create or replace side_effects_sex
+create or replace view side_effects_sex
 as
 	select effect, sex, count(person.id) as anzahl from reported_side_effect
 	join side_effect_type on side_effect_type_id = side_effect_type.id
