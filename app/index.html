@@ -29,7 +29,7 @@
             
 
 			<!-- As a heading -->
-			<nav class="navbar navbar-light bg-light justify-content-center">
+			<nav class="navbar navbar-dark bg-primary justify-content-center">
 			  <span class="navbar-brand mb-0 h1">Impfservice Austria</span>
 			</nav>
 			<br>
@@ -40,24 +40,57 @@
 						<h5>Ausgelieferte Impfdosen</h5>
 						<h4>50</h4>
 					</div>
-				</div>
-				<div class="col">
+				
 					<div class="block">
 						<h5>Verabreichte Impfdosen</h5>
 						<h4>50</h4>
 					</div>
-				</div>
-				<div class="col">
 					<div class="block">
 						<h5>Teilimmunisierte</h5>
 						<h4>50</h4>
 					</div>
-				</div>
-				<div class="col">
+			
 					<div class="block">
 						<h5>Vollimunisierte</h5>
 						<h4>34</h4>
 					</div>
+				</div>
+				<div class="col">
+					<form class="border">
+  <h5><b>Impfung hinzufugen</b></h5>
+
+   <div class="form-group">
+    <label>Person auswahlen</label>
+    <select class="form-control" id="person">
+      <option>1</option>
+    </select>
+  </div>
+  
+
+   <div class="form-group">
+    <label>Impfpaket auswahlen</label>
+    <select class="form-control" id="impfung">
+      <option>1</option>
+    </select>
+  </div>
+  
+  
+   <div class="form-group">
+    <label>Impfzentrum auswahlen</label>
+    <select class="form-control" id="impfzentrum">
+      <option>1</option>
+    </select>
+  </div>
+  
+    <div class="form-group">
+    <label>Doktor auswahlen</label>
+    <select class="form-control" id="doktor">
+      <option>1</option>
+    </select>
+  </div>
+  
+<button class="btn btn-secondary">Impfung hinzufugen</button>
+</form>
 				</div>
 				
 			</div>
@@ -65,11 +98,11 @@
 			<br/>
 		<div class="row text-center">
 		<div class="col">
-						<h5>Verimpfte Dosen pro Altersgruppe</h5>
+						<h5>Geimpfte pro Altersgruppe</h5>
 						<table class="table table-striped">
 						<thead>
 							<th>Altersgruppe</th>
-							<th>Dosen</th>
+							<th>Anzahl</th>
 							</thead>
 							<tbody>
 							<tr>
@@ -96,7 +129,7 @@
 				</div>
 					<div class="col">
 
-						<h5>Verimpfte Dosen pro Geschlecht</h5>
+						<h5>Geimpfte pro Geschlecht</h5>
 						<table class="table table-striped">
 						<thead>
 							<th>Geschlect</th>
@@ -114,6 +147,34 @@
 							</tbody>
 						</table>
 		</div>	
+		</div>
+		<hr>
+		<br>
+		<h5 class="text-center">Weitere Statistiken</h5>
+		<br>
+		<div class="row">
+			<div class="col text-center">
+			<button class="btn btn-outline-primary active">Geimpfte</button>
+			<button class="btn btn-outline-primary">Verfugbare Dosen</button>
+			<button class="btn btn-outline-primary">Termine und Dosen</button>
+			<button class="btn btn-outline-primary">Nebenwirkungen nach Geschlecht</button>
+			<button class="btn btn-outline-primary">Nebenwirkungen nach Hersteller</button>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col">
+				<table class="table table-striped">
+					<thead>
+					<th v-for="column in act_columns">{{column}}</th>
+					</thead>
+					<tbody>
+					<tr v-for='row in act_rows'>
+						<td v-for='data in row'>{{data}}</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>      
 </div>

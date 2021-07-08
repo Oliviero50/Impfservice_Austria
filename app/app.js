@@ -2,7 +2,8 @@
 let one = new Vue({
 	el:"#vue-app-one",
 	data: {
-			
+		act_columns: ['Vorname', 'Nachname', 'Alter', 'Geschlecht', 'Dosis', 'Impfung'],
+		act_rows: [['Max', 'Mustermann', 24, 'M', 2, 'Pfizer']]
 	},
 	computed: {
 
