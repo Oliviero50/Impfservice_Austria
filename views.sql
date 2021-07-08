@@ -83,3 +83,20 @@ as
     join vaccine_package on vaccine_shot.vaccine_package_id = vaccine_package.id
     join manufacturer on vaccine_package.manufacturer_id = manufacturer.id
     group by manufacturer.name;
+
+
+/*********************************************************************
+/**
+/** Table: teilimmunisiert
+/** Developer: Weidele
+/** Description: Anzahl Patienten mit einer Impfung die äter als 22 Tage ist
+/**
+/*********************************************************************/
+create or replace view teilimmunisiert 
+as
+	select count(*) as vollimmunisiert from (
+	select count(patient_id), datetime from patient
+		join vaccine_shot on patient.person_id = vaccine_shot.patient_id
+		group by patient_id, datetime
+		having count(patient_id) >= 2 and extract(day from (sysdate - datetime)) > 2
+	);
