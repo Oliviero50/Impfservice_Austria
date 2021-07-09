@@ -94,7 +94,7 @@ as
 /*********************************************************************/
 create or replace view teilimmunisiert 
 as
-	select count(*) as vollimmunisiert from (
+	select count(*) as teilimmunisiert from (
   	select count(patient_id), datetime from patient
   		join vaccine_shot on patient.person_id = vaccine_shot.patient_id
   		group by patient_id, datetime
