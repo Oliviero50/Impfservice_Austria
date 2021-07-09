@@ -95,11 +95,11 @@ as
 create or replace view teilimmunisiert 
 as
 	select count(*) as vollimmunisiert from (
-	select count(patient_id), datetime from patient
-		join vaccine_shot on patient.person_id = vaccine_shot.patient_id
-		group by patient_id, datetime
-		having count(patient_id) >= 2 and extract(day from (sysdate - datetime)) > 2
-	);
+  	select count(patient_id), datetime from patient
+  		join vaccine_shot on patient.person_id = vaccine_shot.patient_id
+  		group by patient_id, datetime
+  		having count(patient_id) < 2 and extract(day from (sysdate - datetime)) > 21
+  );
 
 /*********************************************************************
 /**
@@ -110,4 +110,4 @@ as
 /*********************************************************************/
 create or replace view all_persons
 as
-  select * from person;‚
+  select * from person;
