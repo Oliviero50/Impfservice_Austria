@@ -100,3 +100,14 @@ as
 		group by patient_id, datetime
 		having count(patient_id) >= 2 and extract(day from (sysdate - datetime)) > 2
 	);
+
+/*********************************************************************
+/**
+/** Table: all_persons
+/** Developer: Weidele
+/** Description: Zeigt alle Personsn für das GUI an
+/**
+/*********************************************************************/
+create or replace view all_persons
+as
+  select * from person;‚
