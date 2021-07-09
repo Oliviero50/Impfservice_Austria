@@ -1,7 +1,9 @@
  
-let one = new Vue({
+let app = new Vue({
 	el:"#vue-app-one",
+	//Data Object, declare all component variables here.
 	data: {
+		api: 'http://localhost:8000',
 		vollimmunisierte: 0,
 		teilimmunisierte: 0,
 		num_vaccine_shots: 0,
@@ -14,10 +16,9 @@ let one = new Vue({
 		shots_sex:[],
 		vac_packages:[]
 	},
-	computed: {
-
-	},
-	mounted: ()=>{
+	//Called on start when the component is connected to the DOM.
+	//Do first time setup here
+	mounted: function(){
 		this._getRequest('/getPersons', this.persons);
 		this._getRequest('/getTeilimmunisierteCount', this.teilimmunisierte);
 		this._getRequest('/getVollimmunisierteCount', this.vollimmunisierte);
@@ -30,11 +31,8 @@ let one = new Vue({
 		this._getRequest('/getVaccinePackagesList', this.vac_packages);
 
 	},
-	watch: {
-
-	},
 	methods: {
-		renderList: (type) => {
+		renderList: function(type) {
 			let request = undefined;
 			switch(type) {
 				case 1:
@@ -49,14 +47,14 @@ let one = new Vue({
 			//Request
 			this._getRequest(request, this.main_list);
 		},
-		_getRequest: (url, result) => {
-			axios.get(this.api +'')
+		_getRequest: function(url, result) {
+		axios.get(this.api +url)
 				.then((response)=>{
 					if(response.data.error) console.log(response.data.message);
 					else {
-						result = response.data.rows;
+						result = response.data;
 					}
-				});
+				}).catch(e => console.log(e));
 		}
 	}
 
