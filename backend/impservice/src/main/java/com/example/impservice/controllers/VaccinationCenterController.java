@@ -13,7 +13,7 @@ public class VaccinationCenterController {
     @Autowired
     VaccinationCenterRepository vaccinationCenterRepository;
 
-    @GetMapping("/vc")
+    @GetMapping("/getVaccinationCentresList")
     Iterable<VaccinationCenter> getAllVaccinationCenters() {
         return vaccinationCenterRepository.findAll();
     }
