@@ -14,12 +14,25 @@ INSERT INTO Person (id,firstname,lastname,dateofbirth,sex,address_id) VALUES ('7
 INSERT INTO Person (id,firstname,lastname,dateofbirth,sex,address_id) VALUES ('8','Phil','Niedermayr',to_date('01.03.1955','DD.MM.YYYY'), 'male',1);
 INSERT INTO Person (id,firstname,lastname,dateofbirth,sex,address_id) VALUES ('9','Martin','Hartlauer',to_date('01.03.1956','DD.MM.YYYY'), 'male',1);
 INSERT INTO Person (id,firstname,lastname,dateofbirth,sex,address_id) VALUES ('10','Martina','Saturn',to_date('01.03.1957','DD.MM.YYYY'), 'female',1);
+INSERT INTO Person (id,firstname,lastname,dateofbirth,sex,address_id) VALUES ('11','Alex','Turn',to_date('01.03.1957','DD.MM.YYYY'), 'male',1);
+INSERT INTO Person (id,firstname,lastname,dateofbirth,sex,address_id) VALUES ('12','Jefre','Weiss',to_date('01.03.1957','DD.MM.YYYY'), 'female',1);
+INSERT INTO Person (id,firstname,lastname,dateofbirth,sex,address_id) VALUES ('13','Rossana','Weingut',to_date('11.03.1957','DD.MM.YYYY'), 'female',1);
+INSERT INTO Person (id,firstname,lastname,dateofbirth,sex,address_id) VALUES ('14','Eleonora','Fritzelschnitzel',to_date('01.04.1957','DD.MM.YYYY'), 'female',1);
 
 INSERT INTO Patient (person_id, svn_nummer) VALUES (1, 110117970);
 INSERT INTO Patient (person_id, svn_nummer) VALUES (2, 110112000);
 INSERT INTO Patient (person_id, svn_nummer) VALUES (3, 110511950);
 INSERT INTO Patient (person_id, svn_nummer) VALUES (4, 120017195);
 INSERT INTO Patient (person_id, svn_nummer) VALUES (5, 140819195);
+INSERT INTO Patient (person_id, svn_nummer) VALUES (6, 110116970);
+INSERT INTO Patient (person_id, svn_nummer) VALUES (7, 110110000);
+INSERT INTO Patient (person_id, svn_nummer) VALUES (8, 110515950);
+INSERT INTO Patient (person_id, svn_nummer) VALUES (9, 120015195);
+INSERT INTO Patient (person_id, svn_nummer) VALUES (10, 140849195);
+INSERT INTO Patient (person_id, svn_nummer) VALUES (11, 140849195);
+INSERT INTO Patient (person_id, svn_nummer) VALUES (12, 140849195);
+INSERT INTO Patient (person_id, svn_nummer) VALUES (13, 140849195);
+INSERT INTO Patient (person_id, svn_nummer) VALUES (14, 140849195);
 
 INSERT INTO Doctor (person_id, license_id) VALUES (6, 140941953);
 INSERT INTO Doctor (person_id, license_id) VALUES (7, 180417954);
@@ -52,7 +65,7 @@ INSERT INTO Vaccine_package (id, charge_id, exp_date, num_shots, vaccine_id, man
 INSERT INTO Vaccine_package (id, charge_id, exp_date, num_shots, vaccine_id, manufacturer_id) VALUES (5,300,to_date('01.01.2022','DD.MM.YYYY'),800,3,3);
 INSERT INTO Vaccine_package (id, charge_id, exp_date, num_shots, vaccine_id, manufacturer_id) VALUES (6,300,to_date('01.01.2022','DD.MM.YYYY'),800,3,3);
 INSERT INTO Vaccine_package (id, charge_id, exp_date, num_shots, vaccine_id, manufacturer_id) VALUES (7,780,to_date('01.01.2022','DD.MM.YYYY'),1000,4,4);
-INSERT INTO Vaccine_package (id, charge_id, exp_date, num_shots, vaccine_id, manufacturer_id) VALUES (8,709,to_date('01.01.2022','DD.MM.YYYY'),1000,4,5);
+INSERT INTO Vaccine_package (id, charge_id, exp_date, num_shots, vaccine_id, manufacturer_id) VALUES (8,709,to_date('01.01.2022','DD.MM.YYYY'),1000,4,4);
 INSERT INTO Vaccine_package (id, charge_id, exp_date, num_shots, vaccine_id, manufacturer_id) VALUES (9,687,to_date('01.01.2022','DD.MM.YYYY'),1000,3,3);
 INSERT INTO Vaccine_package (id, charge_id, exp_date, num_shots, vaccine_id, manufacturer_id) VALUES (10,145,to_date('01.01.2022','DD.MM.YYYY'),1000,3,3);
 INSERT INTO Vaccine_package (id, charge_id, exp_date, num_shots, vaccine_id, manufacturer_id) VALUES (11,205,to_date('01.01.2022','DD.MM.YYYY'),1000,3,3);
@@ -90,13 +103,28 @@ INSERT INTO Appointment(id,datetime,patient_id,vaccination_centre_id) VALUES (3,
 INSERT INTO Appointment(id,datetime,patient_id,vaccination_centre_id) VALUES (4,to_date('25.06.2021','DD.MM.YYYY'),4,1);
 INSERT INTO Appointment(id,datetime,patient_id,vaccination_centre_id) VALUES (5,to_date('29.06.2021','DD.MM.YYYY'),5,3);
 
-INSERT INTO Vaccine_shot(id,datetime,patient_id,doctor_id,vaccination_centre_id,vaccine_package_id) VALUES (1,to_date('25.06.2021','DD.MM.YYYY'),1,6,1,1);
-INSERT INTO Vaccine_shot(id,datetime,patient_id,doctor_id,vaccination_centre_id,vaccine_package_id) VALUES (2,to_date('29.06.2021','DD.MM.YYYY'),2,7,3,3);
+INSERT INTO Vaccine_shot(id,datetime,patient_id,doctor_id,vaccination_centre_id,vaccine_package_id) VALUES (1,to_date('20.06.2021','DD.MM.YYYY'),1,6,1,1);
+INSERT INTO Vaccine_shot(id,datetime,patient_id,doctor_id,vaccination_centre_id,vaccine_package_id) VALUES (2,to_date('20.06.2021','DD.MM.YYYY'),2,7,3,3);
 INSERT INTO Vaccine_shot(id,datetime,patient_id,doctor_id,vaccination_centre_id,vaccine_package_id) VALUES (3,to_date('30.06.2021','DD.MM.YYYY'),3,8,2,2);
 INSERT INTO Vaccine_shot(id,datetime,patient_id,doctor_id,vaccination_centre_id,vaccine_package_id) VALUES (4,to_date('29.06.2021','DD.MM.YYYY'),4,9,1,4);
+INSERT INTO Vaccine_shot(id,datetime,patient_id,doctor_id,vaccination_centre_id,vaccine_package_id) VALUES (5,to_date('29.06.2021','DD.MM.YYYY'),5,10,2,4);
+INSERT INTO Vaccine_shot(id,datetime,patient_id,doctor_id,vaccination_centre_id,vaccine_package_id) VALUES (6,to_date('30.06.2021','DD.MM.YYYY'),6,9,1,4);
+INSERT INTO Vaccine_shot(id,datetime,patient_id,doctor_id,vaccination_centre_id,vaccine_package_id) VALUES (7,to_date('30.06.2021','DD.MM.YYYY'),7,10,2,5);
+INSERT INTO Vaccine_shot(id,datetime,patient_id,doctor_id,vaccination_centre_id,vaccine_package_id) VALUES (8,to_date('25.06.2021','DD.MM.YYYY'),8,9,1,9);
+INSERT INTO Vaccine_shot(id,datetime,patient_id,doctor_id,vaccination_centre_id,vaccine_package_id) VALUES (9,to_date('01.07.2021','DD.MM.YYYY'),1,10,2,1);
+INSERT INTO Vaccine_shot(id,datetime,patient_id,doctor_id,vaccination_centre_id,vaccine_package_id) VALUES (10,to_date('01.07.2021','DD.MM.YYYY'),2,9,1,3);
+INSERT INTO Vaccine_shot(id,datetime,patient_id,doctor_id,vaccination_centre_id,vaccine_package_id) VALUES (11,to_date('01.07.2021','DD.MM.YYYY'),11,10,2,2);
+INSERT INTO Vaccine_shot(id,datetime,patient_id,doctor_id,vaccination_centre_id,vaccine_package_id) VALUES (12,to_date('01.07.2021','DD.MM.YYYY'),12,9,1,3);
+INSERT INTO Vaccine_shot(id,datetime,patient_id,doctor_id,vaccination_centre_id,vaccine_package_id) VALUES (13,to_date('01.07.2021','DD.MM.YYYY'),13,9,2,5);
+INSERT INTO Vaccine_shot(id,datetime,patient_id,doctor_id,vaccination_centre_id,vaccine_package_id) VALUES (14,to_date('01.07.2021','DD.MM.YYYY'),14,9,1,3);
 
 INSERT INTO Reported_side_effect(id, side_effect_type_id, vaccine_shot_id) VALUES (1,1,1);
 INSERT INTO Reported_side_effect(id, side_effect_type_id, vaccine_shot_id) VALUES (2,3,2);
+INSERT INTO Reported_side_effect(id, side_effect_type_id, vaccine_shot_id) VALUES (3,2,3);
+INSERT INTO Reported_side_effect(id, side_effect_type_id, vaccine_shot_id) VALUES (4,4,4);
+INSERT INTO Reported_side_effect(id, side_effect_type_id, vaccine_shot_id) VALUES (5,2,5);
+INSERT INTO Reported_side_effect(id, side_effect_type_id, vaccine_shot_id) VALUES (6,1,6);
+
 
 INSERT INTO Package_delivery (id, datetime, direction, vaccine_package_id, addressee_id) VALUES (1,to_date('20.06.2021','DD.MM.YYYY'),1,1,4);
 INSERT INTO Package_delivery (id, datetime, direction, vaccine_package_id, addressee_id) VALUES (2,to_date('20.06.2021','DD.MM.YYYY'),0,1,4);
@@ -149,3 +177,9 @@ INSERT INTO Package_delivery (id, datetime, direction, vaccine_package_id, addre
 INSERT INTO Package_delivery (id, datetime, direction, vaccine_package_id, addressee_id) VALUES (37,to_date('20.06.2021','DD.MM.YYYY'),1,12,4);
 INSERT INTO Package_delivery (id, datetime, direction, vaccine_package_id, addressee_id) VALUES (38,to_date('20.06.2021','DD.MM.YYYY'),0,12,4);
 INSERT INTO Package_delivery (id, datetime, direction, vaccine_package_id, addressee_id) VALUES (39,to_date('20.06.2021','DD.MM.YYYY'),1,12,2);
+
+INSERT INTO Package_delivery (id, datetime, direction, vaccine_package_id, addressee_id) VALUES (40,to_date('20.06.2021','DD.MM.YYYY'),1,13,2);
+INSERT INTO Package_delivery (id, datetime, direction, vaccine_package_id, addressee_id) VALUES (41,to_date('20.06.2021','DD.MM.YYYY'),1,14,3);
+
+INSERT INTO Package_delivery (id, datetime, direction, vaccine_package_id, addressee_id) VALUES (42,to_date('20.06.2021','DD.MM.YYYY'),1,15,4);
+INSERT INTO Package_delivery (id, datetime, direction, vaccine_package_id, addressee_id) VALUES (43,to_date('20.06.2021','DD.MM.YYYY'),1,16,5);
