@@ -3,8 +3,10 @@ package com.example.impservice.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "all_persons")
 public class Person {
     @Id
     private long id;
