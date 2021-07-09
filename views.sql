@@ -111,3 +111,19 @@ as
 create or replace view all_persons
 as
   select * from person;
+  
+
+/*********************************************************************
+/**
+/** Table: shots_list
+/** Developer: Tomondy
+/** Description: Zeigt alle Impfungen in ubersichtlicher Form
+/**
+/*********************************************************************/  
+CREATE OR REPLACE VIEW shots_list
+AS
+SELECT vs.datetime, p.firstname, p.lastname,p.sex, v.name AS vaccine_name, vc.name AS vaccination_centre FROM vaccine_shot vs
+JOIN person p ON  vs.patient_id = p.id
+JOIN vaccine_package ON vaccine_package.id = vs.vaccine_package_id
+JOIN vaccination_centre vc ON vc.id = vs.vaccination_centre_id 
+JOIN vaccine v ON v.id = vaccine_package.vaccine_id;
