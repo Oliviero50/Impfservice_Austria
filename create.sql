@@ -126,7 +126,7 @@ CREATE TABLE Package_delivery
     datetime TIMESTAMP NOT NULL,
     direction NUMBER NOT NULL,
     vaccine_package_id NUMBER NOT NULL,
-    addressee_id NUMBER,
+    addressee_id NUMBER NOT NULL,
     CONSTRAINT Package_delivery_pk PRIMARY KEY (id)
 );
 --------------------------------------------------------
