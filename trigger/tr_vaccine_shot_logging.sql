@@ -1,31 +1,43 @@
+/*********************************************************************
+/**
+/** Trigger: trigger_vaccine_shot_logging
+/** Type: Before each row
+/** Type Extension: insert, update, delete
+/** Developer: wi19b066
+/** Description: this trigger is responsible for logging all changes
+/** (insert, update and delete) on table vaccine_shot in order to have
+/** all changes stored for later analysis.
+/**
+/**********************************************************************/
+
 create or replace procedure write_vaccine_shot_log(
-    i_vaccine_shot_id number,
-    i_vaccine_shot_datetime timestamp,
-    i_patient_id number,
-    i_doctor_id number,
-    i_vaccination_centre_id number,
-    i_vaccine_package_id number,
-	i_ChangeType varchar2)
+    n_vaccine_shot_id number,
+    ts_vaccine_shot_datetime timestamp,
+    n_patient_id number,
+    n_doctor_id number,
+    n_vaccination_centre_id number,
+    n_vaccine_package_id number,
+	v_ChangeType varchar2)
 as
   PRAGMA AUTONOMOUS_TRANSACTION;
-  v_systimestamp timestamp;
-  v_cur_seq_vaccine_shot_log integer;
-  v_svn_number number;
-  v_doctor_license_id number;
+  ts_systimestamp timestamp;
+  i_cur_seq_vaccine_shot_log integer;
+  n_svn_number number;
+  n_doctor_license_id number;
 begin
-  select systimestamp into v_systimestamp from dual;
-  select seq_vaccination_shot_log.nextval into v_cur_seq_vaccine_shot_log from dual;
-  select svn_nummer into v_svn_number from patient where person_id = i_patient_id;
-  select license_id into v_doctor_license_id from doctor where person_id = i_doctor_id;
-  insert into vaccine_shot_log values(  v_cur_seq_vaccine_shot_log,
-                                            i_vaccine_shot_id,
-                                            i_vaccine_shot_datetime,
-                                            i_vaccination_centre_id,
-                                            i_vaccine_package_id,
-                                            v_svn_number,
-                                            v_doctor_license_id,
-                                            i_ChangeType,
-                                            v_systimestamp);
+  select systimestamp into ts_systimestamp from dual;
+  select seq_vaccination_shot_log.nextval into i_cur_seq_vaccine_shot_log from dual;
+  select svn_nummer into n_svn_number from patient where person_id = n_patient_id;
+  select license_id into n_doctor_license_id from doctor where person_id = n_doctor_id;
+  insert into vaccine_shot_log values(  i_cur_seq_vaccine_shot_log,
+                                            n_vaccine_shot_id,
+                                            ts_vaccine_shot_datetime,
+                                            n_vaccination_centre_id,
+                                            n_vaccine_package_id,
+                                            n_svn_number,
+                                            n_doctor_license_id,
+                                            v_ChangeType,
+                                            ts_systimestamp);
   commit;
 end;
 /
