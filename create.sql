@@ -155,6 +155,26 @@ CREATE TABLE Distributor
     CONSTRAINT Distributor_pk PRIMARY KEY (id)
 );
 --------------------------------------------------------
+
+CREATE TABLE Vaccine_shot_log (
+	id NUMBER NOT NULL,
+    vaccine_shot_id NUMBER NOT NULL,
+    vaccine_shot_datetime TIMESTAMP NOT NULL,
+    vaccination_centre_id NUMBER NOT NULL,
+    vaccine_package_id NUMBER NOT NULL,
+	svn_number_patient NUMBER NOT NULL,
+	doctor_license_id NUMBER NOT NULL,
+	changeType VARCHAR2(10) NOT NULL,
+	zeitstempel TIMESTAMP NOT NULL,
+    CONSTRAINT Vaccine_shot_log_pk PRIMARY KEY (id)
+);
+
+--------------------------------------------------------
+-- Sequences
+--------------------------------------------------------
+CREATE SEQUENCE seq_vaccination_shot_log;
+
+--------------------------------------------------------
 -- Constraints
 --------------------------------------------------------
 ALTER TABLE Vaccine_shot ADD FOREIGN KEY (patient_id) REFERENCES Patient (person_id) ENABLE;
