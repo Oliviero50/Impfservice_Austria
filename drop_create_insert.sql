@@ -15,6 +15,7 @@ DROP TABLE Patient CASCADE CONSTRAINTS;
 DROP TABLE Address CASCADE CONSTRAINTS;
 DROP TABLE Manufacturer CASCADE CONSTRAINTS;
 DROP TABLE Distributor CASCADE CONSTRAINTS;
+DROP SEQUENCE seq_vaccination_shot_log;
 
 
 
@@ -172,6 +173,26 @@ CREATE TABLE Distributor
     name VARCHAR2(255) NOT NULL,
     CONSTRAINT Distributor_pk PRIMARY KEY (id)
 );
+--------------------------------------------------------
+
+CREATE TABLE Vaccine_shot_log (
+	id NUMBER NOT NULL,
+    vaccine_shot_id NUMBER NOT NULL,
+    vaccine_shot_datetime TIMESTAMP NOT NULL,
+    vaccination_centre_id NUMBER NOT NULL,
+    vaccine_package_id NUMBER NOT NULL,
+	svn_number_patient NUMBER NOT NULL,
+	doctor_license_id NUMBER NOT NULL,
+	changeType VARCHAR2(10) NOT NULL,
+	zeitstempel TIMESTAMP NOT NULL,
+    CONSTRAINT Vaccine_shot_log_pk PRIMARY KEY (id)
+);
+
+--------------------------------------------------------
+-- Sequences
+--------------------------------------------------------
+CREATE SEQUENCE seq_vaccination_shot_log;
+
 --------------------------------------------------------
 -- Constraints
 --------------------------------------------------------
