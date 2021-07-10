@@ -197,3 +197,12 @@ ALTER TABLE Package_delivery ADD FOREIGN KEY (addressee_id) REFERENCES Addressee
 ALTER TABLE Addressee ADD FOREIGN KEY (address_id) REFERENCES Address (id) ENABLE;
 
 ALTER TABLE Person ADD FOREIGN KEY (address_id) REFERENCES Address (id) ENABLE;
+
+------------------------------
+-- Indexes
+------------------------------
+CREATE INDEX package_delivery_vp_idx ON package_delivery(vaccine_package_id);
+CREATE INDEX package_delivery_ad_idx ON package_delivery(addressee_id);
+CREATE INDEX vaccine_shot_patient_idx ON vaccine_shot(patient_id);
+CREATE INDEX reported_side_effect_type_idx ON reported_side_effect(side_effect_type_id);
+CREATE INDEX appointment_patient_idx ON appointment(patient_id);
