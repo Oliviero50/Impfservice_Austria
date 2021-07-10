@@ -18,9 +18,7 @@ public class ImmunisiertController {
     @GetMapping("/getTeilimmunisierteCount")
     int getTeilImmunisierteCount() {
 
-        Iterable<TeilImmunisert> dbResult = teilImmunisiertRepository.findAll();
-        List<TeilImmunisert> result = new ArrayList<>();
-        dbResult.forEach(result::add);
+        List<TeilImmunisert> result = teilImmunisiertRepository.findAll();
         if (result.size() < 1) return 0;
         return result.get(0).getTeilimmunisiert();
     }

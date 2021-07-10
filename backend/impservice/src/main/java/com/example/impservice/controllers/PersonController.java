@@ -19,8 +19,7 @@ public class PersonController {
 
     @GetMapping("/getPersons")
     List<PersonDTO> getPersons() {
-        List<Person> persons = new ArrayList<Person>();
-        personRepository.findAll().forEach(persons::add);
+        List<Person> persons = personRepository.findAll();
         List<PersonDTO> personDTOS = persons
                 .stream()
                 .map(p -> new PersonDTO(p.getId(), p.getFirstName() + " " + p.getLastName())).collect(Collectors.toUnmodifiableList());
