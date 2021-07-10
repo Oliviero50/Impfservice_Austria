@@ -17,3 +17,9 @@ DROP TABLE Manufacturer CASCADE CONSTRAINTS;
 DROP TABLE Distributor CASCADE CONSTRAINTS;
 DROP TABLE vaccine_shot_log;
 DROP SEQUENCE seq_vaccination_shot_log;
+
+DROP INDEX package_delivery_vp_idx;
+DROP INDEX package_delivery_ad_idx;
+DROP INDEX vaccine_shot_patient_idx;
+DROP INDEX reported_side_effect_type_idx;
+DROP INDEX appointment_patient_idx;
