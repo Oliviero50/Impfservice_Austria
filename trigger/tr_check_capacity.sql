@@ -4,11 +4,6 @@
 /** Type: Before each row
 /** Type Extension: insert
 /** Developer: wi19b066
-
-
-
-
-
 /** Description: this trigger is responsible for checking new inserts
 /** on appointment. If the capacity of the corresponding vaccination
 /** centre is for the desired day already reached, the appointment
