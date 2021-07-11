@@ -1,7 +1,9 @@
 package com.example.impservice.controllers;
 
 import com.example.impservice.model.TeilImmunisert;
+import com.example.impservice.model.Vollimmunisiert;
 import com.example.impservice.repositories.TeilImmunisiertRepository;
+import com.example.impservice.repositories.VollimmunisiertRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,9 @@ public class ImmunisiertController {
     @Autowired
     TeilImmunisiertRepository teilImmunisiertRepository;
 
+    @Autowired
+    VollimmunisiertRepository vollimmunisiertRepository;
+
     @GetMapping("/getTeilimmunisierteCount")
     int getTeilImmunisierteCount() {
 
@@ -26,7 +31,9 @@ public class ImmunisiertController {
     }
 
     @GetMapping("/getVollimmunisierteCount")
-    int getVollImmunisierteCount() {
-        return 29;
+    List<Vollimmunisiert> getVollImmunisierteCount()
+    {
+
+        return vollimmunisiertRepository.findAll();
     }
 }
