@@ -55,7 +55,7 @@ as
 /**
 /** Table: reported_side_effects
 /** Developer: Weidele
-/** Description: Nebenwirkungen pro Altersgruppe und Geschlecht
+/** Description: Nebenwirkungen pro Geschlecht
 /**
 /*********************************************************************/
 create or replace view side_effects_sex

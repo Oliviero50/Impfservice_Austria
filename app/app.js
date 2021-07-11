@@ -50,6 +50,7 @@ let app = new Vue({
 					if(response.data.error) console.log(response.data.message);
 					else {
 						result = response.data;
+						console.log(response.data);
 					}
 				}).catch(e => console.log(e));
 		},
