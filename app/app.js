@@ -49,28 +49,26 @@ let app = new Vue({
 				.then((response)=>{
 					if(response.data.error) console.log(response.data.message);
 					else {
-						result = response.data;
-						console.log(response.data);
+						app[result] = response.data;
 					}
 				}).catch(e => console.log(e));
 		},
 		refreshData: function() {
-			this._getRequest('/getPersons', this.persons);
-			this._getRequest('/getTeilimmunisierteCount', this.teilimmunisierte);
-			this._getRequest('/getVollimmunisierteCount', this.vollimmunisierte);
-			this._getRequest('/getVaccineShotsCount', this.num_vaccine_shots);
-			this._getRequest('/getDeliveredDosesCount', this.delivered_doses)
-			this._getRequest('/getVaccinationCentresList', this.vaccination_centres);
-			this._getRequest('/getDoctorsList', this.doctors);		
-			this._getRequest('/getManufacturerShotsList', this.shots_manufacturer);
-			this._getRequest('/getShotsSexList', this.shots_sex);
-			this._getRequest('/getVaccinePackagesList', this.vac_packages)
+			this._getRequest('/getPersons', 'persons');
+			this._getRequest('/getTeilimmunisierteCount', 'teilimmunisierte');
+			this._getRequest('/getVollimmunisierteCount', 'vollimmunisierte');
+			this._getRequest('/getVaccineShotsCount', 'num_vaccine_shots');
+			this._getRequest('/getDeliveredDosesCount', 'delivered_doses')
+			this._getRequest('/getVaccinationCentresList', 'vaccination_centres');
+			this._getRequest('/getDoctorsList', 'doctors');		
+			this._getRequest('/getManufacturerShotsList', 'shots_manufacturer');
+			this._getRequest('/getShotsSexList', 'shots_sex');
+			this._getRequest('/getVaccinePackagesList', 'vac_packages')
 		},
 		insertNewShot: function() {
 			if(this.insertForm.patient_id != '' && this.insertForm.doctor_id != '' &&
 			this.insertForm.vaccination_centre_id != '' && this.insertForm.vaccine_package_id != '') {
 				this.insertForm.datetime = new Date();
-				console.log(JSON.stringify(this.insertForm))
 				axios.post(this.api + '/addVaccineShot', JSON.stringify(this.insertForm)
 			  ).then(function (response) {
 				setTimeout(()=> app.refreshData(), 2000);
