@@ -143,3 +143,16 @@ JOIN person p ON  vs.patient_id = p.id
 JOIN vaccine_package ON vaccine_package.id = vs.vaccine_package_id
 JOIN vaccination_centre vc ON vc.id = vs.vaccination_centre_id 
 JOIN vaccine v ON v.id = vaccine_package.vaccine_id;
+
+/*********************************************************************
+/**
+/** View: shots_by_manufacturer
+/** Developer: Tomondy
+/** Description: Zeigt verimpfte Dosen pro Hersteller an.
+/**
+/*********************************************************************/
+CREATE OR REPLACE VIEW shots_by_manufacturer
+AS
+SELECT m.name, COUNT(*) AS Hersteller FROM vaccine_shot vs JOIN vaccine_package vp ON vp.id = vs.vaccine_package_id
+JOIN manufacturer m ON m.id = vp.manufacturer_id
+JOIN vaccine v ON v.id = vp.vaccine_id GROUP BY m.name;
