@@ -5,7 +5,7 @@ set serveroutput on;
 -- Anzahl der noch unbenutzten shots eines impfstoffes
 ------------------------------------------------------------------------------
 
-create or replace procedure vaccines(v_i in string)
+create or replace procedure getNumberOfAvailableVaccine(v_i in string)
 as
 	v_anzahl_all_vaccines number := 0;
 	v_anzahl_used_vaccines number := 0;
@@ -59,11 +59,11 @@ end;
 
 
 begin
-	vaccines('Comirnaty');
-	vaccines('Moderna Vaccine');
-	vaccines('AstraZeneca Vaccine');
-	vaccines('Jannsen');
-	--vaccines('NOT_EXISTING');
-	--vaccines(null);
+	getNumberOfAvailableVaccine('Comirnaty');
+	getNumberOfAvailableVaccine('Moderna Vaccine');
+	getNumberOfAvailableVaccine('AstraZeneca Vaccine');
+	getNumberOfAvailableVaccine('Jannsen');
+	--getNumberOfAvailableVaccine('NOT_EXISTING');
+	--getNumberOfAvailableVaccine(null);
 end;
 /
