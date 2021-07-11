@@ -14,22 +14,19 @@ let app = new Vue({
 		doktors:[],
 		shots_manufacturer: [],
 		shots_sex:[],
-		vac_packages:[]
+		vac_packages:[],
+		insertForm: {
+			patient_id: '',
+			vaccination_centre_id:'',
+			vaccine_package_id:'',
+			doctor_id:'',
+			datetime: new Date()
+		}
 	},
 	//Called on start when the component is connected to the DOM.
 	//Do first time setup here
 	mounted: function(){
-		this._getRequest('/getPersons', this.persons);
-		this._getRequest('/getTeilimmunisierteCount', this.teilimmunisierte);
-		this._getRequest('/getVollimmunisierteCount', this.vollimmunisierte);
-		this._getRequest('/getVaccineShotsCount', this.num_vaccine_shots);
-		this._getRequest('/getDeliveredDosesCount', this.delivered_doses)
-		this._getRequest('/getVaccinationCentresList', this.vaccination_centres);
-		this._getRequest('/getDoctorsList', this.doctors);		
-		this._getRequest('/getManufacturerShotsList', this.shots_manufacturer);
-		this._getRequest('/getShotsSexList', this.shots_sex);
-		this._getRequest('/getVaccinePackagesList', this.vac_packages);
-
+		this.refreshData();
 	},
 	methods: {
 		renderList: function(type) {
@@ -55,6 +52,32 @@ let app = new Vue({
 						result = response.data;
 					}
 				}).catch(e => console.log(e));
+		},
+		refreshData: function() {
+			this._getRequest('/getPersons', this.persons);
+			this._getRequest('/getTeilimmunisierteCount', this.teilimmunisierte);
+			this._getRequest('/getVollimmunisierteCount', this.vollimmunisierte);
+			this._getRequest('/getVaccineShotsCount', this.num_vaccine_shots);
+			this._getRequest('/getDeliveredDosesCount', this.delivered_doses)
+			this._getRequest('/getVaccinationCentresList', this.vaccination_centres);
+			this._getRequest('/getDoctorsList', this.doctors);		
+			this._getRequest('/getManufacturerShotsList', this.shots_manufacturer);
+			this._getRequest('/getShotsSexList', this.shots_sex);
+			this._getRequest('/getVaccinePackagesList', this.vac_packages)
+		},
+		insertNewShot: function() {
+			if(this.insertForm.patient_id != '' && this.insertForm.doctor_id != '' &&
+			this.insertForm.vaccination_centre_id != '' && this.insertForm.vaccine_package_id != '') {
+				this.insertForm.datetime = new Date();
+				axios.post(this.api + '/addVaccineShot', JSON.stringify(this.insertForm)
+			  ).then(function (response) {
+				setTimeout(()=> app.refreshData(), 2000);
+			  }).catch(function (error) {
+				console.log(error);
+				});
+			} else {
+				alert('Fullen Sie alle Felder aus');
+			}
 		}
 	}
 

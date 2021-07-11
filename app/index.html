@@ -56,12 +56,12 @@
 					</div>
 				</div>
 				<div class="col">
-					<form class="border">
+					<div class="border">
   <h5><b>Impfung hinzufugen</b></h5>
 
    <div class="form-group">
-    <label>Person auswahlen</label>
-    <select class="form-control" id="person">
+    <label>Patienten auswahlen</label>
+    <select class="form-control" id="person" :value='insertForm.patient_id'>
 	<option value="">Person auswahlen</option>
       <option v-for='person in persons' :value="person.id">{{person.name}}</option>
     </select>
@@ -69,7 +69,7 @@
   
    <div class="form-group">
     <label>Impfzentrum auswahlen</label>
-    <select class="form-control" id="impfzentrum">
+    <select class="form-control" id="impfzentrum" :value='insertForm.vaccination_centre_id'>
      <option value="">Impfzentrum auswahlen</option>
       <option v-for='centre in vaccination_centres' :value="centre.id">{{centre.name}}</option>
     </select>
@@ -78,7 +78,7 @@
 
    <div class="form-group">
     <label>Impfpaket auswahlen</label>
-    <select class="form-control" id="impfung">
+    <select class="form-control" id="impfung" :value='insertForm.vaccine_package_id'>
      <option value="">Impfpaket auswahlen</option>
       <option v-for='package in vac_packages' :value="package.id">{{package.id}}</option>
     </select>
@@ -87,14 +87,14 @@
  
     <div class="form-group">
     <label>Doktor auswahlen</label>
-    <select class="form-control" id="doktor">
+    <select class="form-control" id="doktor" :value='insertForm.doctor_id'>
       <option value="">Doktor auswahlen</option>
       <option v-for='doktor in doktors' :value="doktor.id">{{doktor.name}}</option>
     </select>
   </div>
   
-<button class="btn btn-secondary">Impfung hinzufugen</button>
-</form>
+<button class="btn btn-secondary" v-on:click='insertNewShot()'>Impfung hinzufugen</button>
+</div>
 				</div>
 				
 			</div>
