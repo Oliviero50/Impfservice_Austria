@@ -3,7 +3,7 @@ let app = new Vue({
 	el:"#vue-app-one",
 	//Data Object, declare all component variables here.
 	data: {
-		api: 'http://localhost:8000',
+		api: 'http://localhost:8080',
 		vollimmunisierte: 0,
 		teilimmunisierte: 0,
 		num_vaccine_shots: 0,
@@ -69,6 +69,7 @@ let app = new Vue({
 			if(this.insertForm.patient_id != '' && this.insertForm.doctor_id != '' &&
 			this.insertForm.vaccination_centre_id != '' && this.insertForm.vaccine_package_id != '') {
 				this.insertForm.datetime = new Date();
+				console.log(JSON.stringify(this.insertForm))
 				axios.post(this.api + '/addVaccineShot', JSON.stringify(this.insertForm)
 			  ).then(function (response) {
 				setTimeout(()=> app.refreshData(), 2000);
