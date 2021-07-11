@@ -67,22 +67,22 @@ end;
 -- /*********************************************************************
 -- /**
 -- /** Function: getDeliveredDosesCount
--- /** Developer: Arnauer
--- /** Description: Anzahl der Shots, die bereits verabreicht wurden
+-- /** Developer: Tomondy
+-- /** Description: Anzahl der Shots, die an die Impfzentren geliefert wurde.
 -- /**
 -- /*********************************************************************/
-create or replace function getDeliveredDosesCount
-return number
-is
-  i_anzahl_vaccine_shots number := 0;
-begin
-
-  -- Anzahl vergangener Termine = Anzahl der deleiverd shots
-  -- SYSTIMESTAMP ist current Time zB 2021-07-10 18:15:20.304107
-  select count(*) into i_anzahl_vaccine_shots from appointment where datetime <= SYSTIMESTAMP;
-  dbms_output.put_line('Anzahl verabreichter Impfung-Shots: ' || i_anzahl_vaccine_shots);
-  return i_anzahl_vaccine_shots;
-end;
+CREATE OR REPLACE FUNCTION getDeliveredDosesCount 
+RETURN NUMBER 
+IS 
+	i_delivered_doses_count NUMBER := 0;
+BEGIN
+SELECT SUM(vp.num_shots) INTO i_delivered_doses_count
+FROM package_delivery pd
+  JOIN vaccine_package vp ON vp.id = pd.vaccine_package_id
+WHERE addressee_id IN (SELECT id FROM vaccination_centre)
+AND   direction = 1;
+RETURN i_delivered_doses_count;
+END;
 /
 -- mit STRG+E ausführen
 -- select getDeliveredDosesCount() as AnzahlDeliverdShots from dual;
