@@ -156,3 +156,17 @@ AS
 SELECT m.name, COUNT(*) AS Hersteller FROM vaccine_shot vs JOIN vaccine_package vp ON vp.id = vs.vaccine_package_id
 JOIN manufacturer m ON m.id = vp.manufacturer_id
 JOIN vaccine v ON v.id = vp.vaccine_id GROUP BY m.name;
+
+
+/*********************************************************************
+/**
+/** View: shots_sex
+/** Developer: Weidele
+/** Description: Zeigt die Anzahl der verabreichten (Teil-)Impfungen nach Geschlecht für das GUI
+/**
+/*********************************************************************/
+CREATE OR REPLACE VIEW shots_sex 
+AS
+  SELECT count(sex) AS shots, sex FROM vaccine_shot
+    JOIN person ON person.id = vaccine_shot.patient_id
+    GROUP BY sex;
