@@ -30,9 +30,10 @@ public class ImmunisiertController {
     }
 
     @GetMapping("/getVollimmunisierteCount")
-    List<Vollimmunisiert> getVollImmunisierteCount()
+    long getVollImmunisierteCount()
     {
-
-        return vollimmunisiertRepository.findAll();
+        List<Vollimmunisiert> result = vollimmunisiertRepository.findAll();
+        if (result.size() < 1) return 0;
+        return result.get(0).getVollimmunisiert();
     }
 }

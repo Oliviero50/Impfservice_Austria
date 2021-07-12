@@ -16,7 +16,7 @@ public class ShotsListController {
     @Autowired
     ShotsListRepository shotsListRepository;
 
-    @GetMapping("/getVaccineShotsCount")
+    @GetMapping("/getShotsSexList")
     List<ShotsList> getShotsList() {
         return shotsListRepository.findAll();
     }
