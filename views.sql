@@ -39,7 +39,7 @@ ON v1.addressee_id = v3.addressee_id;
 /*********************************************************************/
 create or replace view appointments_per_center
 as
-	select name, sum(vaccine_package.num_shots) as shots, p.shots as appointmnets from package_delivery
+	select name, sum(vaccine_package.num_shots) as shots, p.shots as appointments from package_delivery
 		join vaccination_centre vc on vc.id = package_delivery.addressee_id
 		join vaccine_package on package_delivery.vaccine_package_id = vaccine_package.id
 		join (
