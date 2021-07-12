@@ -60,10 +60,11 @@ let app = new Vue({
 			this._getRequest('/getVaccineShotsCount', 'num_vaccine_shots');
 			this._getRequest('/getDeliveredDosesCount', 'delivered_doses')
 			this._getRequest('/getVaccinationCentresList', 'vaccination_centres');
-			this._getRequest('/getDoctorsList', 'doctors');		
+			this._getRequest('/getDoctorsList', 'doktors');		
 			this._getRequest('/getManufacturerShotsList', 'shots_manufacturer');
 			this._getRequest('/getShotsSexList', 'shots_sex');
 			this._getRequest('/getVaccinePackagesList', 'vac_packages')
+			console.log(doktors)
 		},
 		insertNewShot: function() {
 			if(this.insertForm.patient_id != '' && this.insertForm.doctor_id != '' &&

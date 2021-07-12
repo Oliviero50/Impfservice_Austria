@@ -89,7 +89,7 @@
     <label>Doktor auswahlen</label>
     <select class="form-control" id="doktor" :value='insertForm.doctor_id'>
       <option value="">Doktor auswahlen</option>
-      <option v-for='doktor in doktors' :value="doktor.id">{{doktor.name}}</option>
+      <option v-for='doktor in doktors' :value="doktor.id">{{doktor.person.firstName}} {{doktor.person.lastName}}</option>
     </select>
   </div>
   
