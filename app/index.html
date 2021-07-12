@@ -125,9 +125,9 @@
 							<th>Dosen</th>
 							</thead>
 							<tbody>
-							<tr v-for="(value, name) in shots_sex">
-							<td>{{name}}</td>
-							<td>{{value}}</td>
+							<tr v-for="shot in shots_sex">
+							<td>{{shot.sex}}</td>
+							<td>{{shot.shots}}</td>
 							</tr>
 							</tbody>
 						</table>

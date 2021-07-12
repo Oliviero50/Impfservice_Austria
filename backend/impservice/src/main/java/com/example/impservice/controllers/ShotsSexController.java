@@ -1,7 +1,7 @@
 package com.example.impservice.controllers;
 
-import com.example.impservice.model.ShotsList;
-import com.example.impservice.repositories.ShotsListRepository;
+import com.example.impservice.model.ShotsSex;
+import com.example.impservice.repositories.ShotsSexRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,13 +11,13 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-public class ShotsListController {
+public class ShotsSexController {
 
     @Autowired
-    ShotsListRepository shotsListRepository;
+    ShotsSexRepository shotsSexRepository;
 
-    @GetMapping("/foo")
-    List<ShotsList> getShotsList() {
-        return shotsListRepository.findAll();
+    @GetMapping("/getShotsSexList")
+    List<ShotsSex> getShotsBySex() {
+        return shotsSexRepository.findAll();
     }
 }
