@@ -22,30 +22,12 @@ import java.sql.Types;
 @SpringBootApplication
 public class ImpserviceApplication implements CommandLineRunner {
 
-	@Autowired
-	DoctorRepository doctorRepository;
-
-	@Autowired
-	EntityManager entityManager;
-
 	public static void main(String[] args) {
 		SpringApplication.run(ImpserviceApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-
-		StoredProcedureQuery query = entityManager
-				.createStoredProcedureQuery("add_vaccination2")
-				.registerStoredProcedureParameter(1, Long.class, ParameterMode.IN)
-				.registerStoredProcedureParameter(2, Long.class, ParameterMode.IN)
-				.registerStoredProcedureParameter(3, Long.class, ParameterMode.IN)
-				.registerStoredProcedureParameter(4, Long.class, ParameterMode.IN)
-				.setParameter(1, 1L)
-				.setParameter(2, 1L)
-				.setParameter(3, 6L)
-				.setParameter(4, 6L);
-
-		query.execute();
+		System.out.println("Hallo du");
 	}
 }
