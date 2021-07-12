@@ -109,9 +109,9 @@
 							<th>Dosen</th>
 							</thead>
 							<tbody>
-							<tr v-for="(value, name) in shots_manufacturer">
-							<td>{{name}}</td>
-							<td>{{value}}</td>
+							<tr v-for="manufacturer in shots_manufacturer">
+							<td>{{manufacturer.name}}</td>
+							<td>{{manufacturer.hersteller}}</td>
 							</tr>
 							</tbody>
 						</table>

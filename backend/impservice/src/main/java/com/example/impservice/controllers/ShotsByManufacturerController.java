@@ -15,7 +15,7 @@ public class ShotsByManufacturerController {
     @Autowired
     ShotsByManufacturerRepository shotsByManufacturerRepository;
 
-    @GetMapping("/getManufacturerShots")
+    @GetMapping("/getManufacturerShotsList")
     List<ShotsByManufacturer> getShotsByManufacturer() {
         return shotsByManufacturerRepository.findAll();
     }
