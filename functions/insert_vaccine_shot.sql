@@ -13,7 +13,7 @@ CREATE SEQUENCE vaccine_shot_seq START WITH 15;
 /** Description: Inserts a newly applied vaccine shot
 /**
 /*********************************************************************/
-CREATE OR REPLACE FUNCTION add_vaccination(patient_id IN NUMBER, vaccination_centre IN NUMBER, package_id IN NUMBER, doctor_id IN NUMBER) RETURN NUMBER
+CREATE OR REPLACE PROCEDURE add_vaccination(patient_id IN NUMBER, vaccination_centre IN NUMBER, package_id IN NUMBER, doctor_id IN NUMBER)
 AS
   d_datetime TIMESTAMP := sysdate;
   i_vaccine_shot_id NUMBER;
@@ -47,8 +47,6 @@ BEGIN
   DBMS_OUTPUT.PUT_LINE(p_package.id || d_datetime);
 
   INSERT INTO vaccine_shot VALUES (vaccine_shot_seq.NEXTVAL, d_datetime, patient_id, doctor_id, vaccination_centre, package_id);
-  SELECT vaccine_shot_seq.CURRVAL INTO i_vaccine_shot_id FROM dual;
-  RETURN i_vaccine_shot_id;
 
 EXCEPTION
   WHEN x_same_person THEN
