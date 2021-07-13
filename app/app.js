@@ -42,7 +42,7 @@ let app = new Vue({
 					request = '/getSideEffectsSexCount'; break;
 			}
 			//Request
-			this._getRequest(request, this.main_list);
+			this._getRequest(request, 'main_list');
 		},
 		_getRequest: function(url, result) {
 		axios.get(this.api +url)
