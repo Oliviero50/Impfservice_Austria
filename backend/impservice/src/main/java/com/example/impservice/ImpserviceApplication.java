@@ -20,14 +20,10 @@ import java.sql.SQLException;
 import java.sql.Types;
 
 @SpringBootApplication
-public class ImpserviceApplication implements CommandLineRunner {
+public class ImpserviceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ImpserviceApplication.class, args);
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
-		System.out.println("Hallo du");
-	}
 }
