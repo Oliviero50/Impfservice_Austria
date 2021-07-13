@@ -92,8 +92,7 @@ CREATE TABLE Side_effect_type
 CREATE TABLE Addressee
 (
     id NUMBER NOT NULL, 
-    address_id NUMBER,
-    category VARCHAR2(255),
+    address_id NUMBER NOT NULL,
     CONSTRAINT Addressee_pk PRIMARY KEY (id)
 );
 --------------------------------------------------------
