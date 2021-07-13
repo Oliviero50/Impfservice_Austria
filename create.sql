@@ -1,5 +1,38 @@
 
+------------------------------
+-- Tablespace
+------------------------------
+create tablespace dbs_project
+	datafile 'dbs_project_dat.dbf'
+	size 100m;
+	
 
+------------------------------
+-- User
+------------------------------
+create user impfservice_admin
+	identified by impfservice_admin
+	default tablespace dbs_project
+	quota 100m on dbs_project;
+	
+create user nurse
+	identified by nurse
+	default tablespace dbs_project
+	quota 100m on dbs_project;
+	
+create user logistics
+	identified by logistics
+	default tablespace dbs_project
+	quota 100m on dbs_project;
+	
+create user doctor
+	identified by doctor
+	default tablespace dbs_project
+	quota 100m on dbs_project;
+
+------------------------------
+-- Tables
+------------------------------
 --------------------------------------------------------
 CREATE TABLE Manufacturer
 (
@@ -205,3 +238,27 @@ CREATE INDEX package_delivery_ad_idx ON package_delivery(addressee_id);
 CREATE INDEX vaccine_shot_patient_idx ON vaccine_shot(patient_id);
 CREATE INDEX reported_side_effect_type_idx ON reported_side_effect(side_effect_type_id);
 CREATE INDEX appointment_patient_idx ON appointment(patient_id);
+
+------------------------------
+-- Priviledges
+------------------------------
+-- connect for all users
+grant connect to impfservice_admin, nurse, logistics, doctor;
+
+-- admin
+grant all privileges to admin;
+
+-- nurse
+grant insert, update, delete on vaccine_shot to nurse;
+grant insert, update, delete on reported_side_effect to nurse;
+
+-- logistics
+grant insert, update, delete on package_delivery to logistics;
+grant insert, update, delete on vaccine_package to logistics;
+
+-- doctor
+grant insert, update, delete on person to doctor;
+grant insert, update, delete on patient to doctor;
+grant insert, update, delete on address to doctor;
+grant insert, update, delete on appointment to doctor;
+grant insert, update, delete on reported_side_effect to doctor;

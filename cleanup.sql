@@ -1,4 +1,13 @@
 -- drop
+
+-- drop indexes
+DROP INDEX package_delivery_vp_idx;
+DROP INDEX package_delivery_ad_idx;
+DROP INDEX vaccine_shot_patient_idx;
+DROP INDEX reported_side_effect_type_idx;
+DROP INDEX appointment_patient_idx;
+
+-- drop tables
 DROP TABLE Vaccine_package CASCADE CONSTRAINTS;
 DROP TABLE Package_delivery CASCADE CONSTRAINTS;
 DROP TABLE Addressee CASCADE CONSTRAINTS;
@@ -18,8 +27,11 @@ DROP TABLE Distributor CASCADE CONSTRAINTS;
 DROP TABLE vaccine_shot_log;
 DROP SEQUENCE seq_vaccination_shot_log;
 
-DROP INDEX package_delivery_vp_idx;
-DROP INDEX package_delivery_ad_idx;
-DROP INDEX vaccine_shot_patient_idx;
-DROP INDEX reported_side_effect_type_idx;
-DROP INDEX appointment_patient_idx;
+-- drop tablespace
+drop tablespace dbs_project INCLUDING CONTENTS AND DATAFILES;
+
+-- drop users
+drop user impfservice_admin;
+drop user nurse;
+drop user logistics;
+drop user doctor;
