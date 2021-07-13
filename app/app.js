@@ -64,13 +64,18 @@ let app = new Vue({
 			this._getRequest('/getManufacturerShotsList', 'shots_manufacturer');
 			this._getRequest('/getShotsSexList', 'shots_sex');
 			this._getRequest('/getVaccinePackagesList', 'vac_packages')
-			console.log(doktors)
 		},
 		insertNewShot: function() {
 			if(this.insertForm.patient_id != '' && this.insertForm.doctor_id != '' &&
 			this.insertForm.vaccination_centre_id != '' && this.insertForm.vaccine_package_id != '') {
 				this.insertForm.datetime = new Date();
-				axios.post(this.api + '/addVaccineShot', JSON.stringify(this.insertForm)
+				axios.post(this.api + '/addVaccineShot', 
+					{
+						patientId: this.insertForm.patient_id,
+						vaccinationCentre: this.insertForm.vaccination_centre_id,
+						packageId: this.insertForm.vaccine_package_id,
+						doctorId: this.insertForm.doctor_id
+					}
 			  ).then(function (response) {
 				setTimeout(()=> app.refreshData(), 2000);
 			  }).catch(function (error) {

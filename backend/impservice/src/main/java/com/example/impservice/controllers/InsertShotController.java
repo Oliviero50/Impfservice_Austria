@@ -20,7 +20,6 @@ public class InsertShotController {
     @PostMapping("/addVaccineShot")
     void addShot(@RequestBody VaccineShotDTO shot) {
 
-        System.out.println(shot.getDoctorId());
         StoredProcedureQuery query = entityManager
                 .createStoredProcedureQuery("add_vaccination")
                 .registerStoredProcedureParameter(1, Long.class, ParameterMode.IN)
