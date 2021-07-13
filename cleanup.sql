@@ -1,4 +1,6 @@
--- drop
+/**********************************************************
+ * CLEANUP: Drops all tables and indexes
+ **********************************************************/
 
 -- drop indexes
 DROP INDEX package_delivery_vp_idx;
