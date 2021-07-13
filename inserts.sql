@@ -91,11 +91,11 @@ INSERT INTO Vaccination_centre (id,name,capacity) VALUES (3,'Ferry Dusika Stadio
 INSERT INTO Warehouse(id, name) VALUES(4, 'LAGER SCHWECHAT FLUGHAFEN');
 INSERT INTO Warehouse(id, name) VALUES(5, 'LAGER FLUGHAFEN INNSBRUCK');
 
-INSERT INTO Addressee (id,address_id, category) VALUES (1,2,'vaccination centre');
-INSERT INTO Addressee (id,address_id, category) VALUES (2,4,'vaccination centre');
-INSERT INTO Addressee (id,address_id, category) VALUES (3,2,'vaccination centre');
-INSERT INTO Addressee (id,address_id, category) VALUES (4,1,'warehouse');
-INSERT INTO Addressee (id,address_id, category) VALUES (5,5,'warehouse');
+INSERT INTO Addressee (id,address_id) VALUES (1,2);
+INSERT INTO Addressee (id,address_id) VALUES (2,4);
+INSERT INTO Addressee (id,address_id) VALUES (3,2);
+INSERT INTO Addressee (id,address_id) VALUES (4,1);
+INSERT INTO Addressee (id,address_id) VALUES (5,5);
 
 INSERT INTO Appointment(id,datetime,patient_id,vaccination_centre_id) VALUES (1,to_date('25.06.2021','DD.MM.YYYY'),1,1);
 INSERT INTO Appointment(id,datetime,patient_id,vaccination_centre_id) VALUES (2,to_date('29.06.2021','DD.MM.YYYY'),2,3);
