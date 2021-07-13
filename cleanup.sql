@@ -1,4 +1,6 @@
--- drop
+/**********************************************************
+ * CLEANUP: Drops all tables and indexes
+ **********************************************************/
 DROP TABLE Vaccine_package CASCADE CONSTRAINTS;
 DROP TABLE Package_delivery CASCADE CONSTRAINTS;
 DROP TABLE Addressee CASCADE CONSTRAINTS;

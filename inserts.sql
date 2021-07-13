@@ -1,3 +1,6 @@
+/***********************************
+ * DEMO DATA ANFANG
+ **********************************/
 INSERT INTO Address (id,street,address_number,zip,city) VALUES (1, 'Wiener Strasse', 15, 1010, 'Wien');
 INSERT INTO Address (id,street,address_number,zip,city) VALUES (2, 'Austria Centre', 1, 1220, 'Wien');
 INSERT INTO Address (id,street,address_number,zip,city) VALUES (3, 'Ferry Dusika Stadion', 1, 1020, 'Wien');
@@ -183,3 +186,6 @@ INSERT INTO Package_delivery (id, datetime, direction, vaccine_package_id, addre
 
 INSERT INTO Package_delivery (id, datetime, direction, vaccine_package_id, addressee_id) VALUES (42,to_date('20.06.2021','DD.MM.YYYY'),1,15,4);
 INSERT INTO Package_delivery (id, datetime, direction, vaccine_package_id, addressee_id) VALUES (43,to_date('20.06.2021','DD.MM.YYYY'),1,16,5);
+/***********************************
+ * DEMO DATA ENDE
+ **********************************/
