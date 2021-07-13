@@ -71,7 +71,7 @@ CREATE TABLE Person
     lastname VARCHAR2(255) NOT NULL,
     dateofbirth DATE NOT NULL,
     sex VARCHAR2(20) NOT NULL,
-    address_id NUMBER,
+    address_id NUMBER NOT NULL,
      CONSTRAINT Person_pk PRIMARY KEY (id)
 );
 
