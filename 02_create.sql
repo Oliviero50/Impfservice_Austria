@@ -271,6 +271,7 @@ CREATE TABLE Vaccine_shot_log (
 -- Sequences
 --------------------------------------------------------
 CREATE SEQUENCE seq_vaccination_shot_log;
+CREATE SEQUENCE vaccine_shot_seq START WITH 15;
 
 --------------------------------------------------------
 -- Constraints

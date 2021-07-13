@@ -276,10 +276,6 @@ end;
 
 
 
-
-CREATE SEQUENCE vaccine_shot_seq START WITH 15;
-/
-
 /*********************************************************************
 /**
 /** Function: add_vaccination
