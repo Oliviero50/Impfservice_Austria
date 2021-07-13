@@ -1,7 +1,7 @@
 /*********************************************************************
 /**
 /** Table: available_doses
-/** Developer: Tomondi
+/** Developer: Tomondy
 /** Description: Zeigt die Anzahl der zur verfügung stehenden Impfdosen je Warehouse oder Vaccination Centre an
 /**
 /*********************************************************************/
@@ -133,7 +133,7 @@ as
 /**
 /** Table: shots_list
 /** Developer: Tomondy
-/** Description: Zeigt alle Impfungen in ubersichtlicher Form
+/** Description: Zeigt alle Impfungen der Patienten in übersichtlicher Form
 /**
 /*********************************************************************/  
 CREATE OR REPLACE VIEW shots_list
