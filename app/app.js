@@ -21,24 +21,28 @@ let app = new Vue({
 			vaccine_package_id:'',
 			doctor_id:'',
 			datetime: new Date()
-		}
+		},
+		listing_btn: []
 	},
 	//Called on start when the component is connected to the DOM.
 	//Do first time setup here
 	mounted: function(){
 		this.refreshData();
+		this.listing_btn = document.querySelectorAll('.listing-btn');
 	},
 	methods: {
 		renderList: function(type) {
+			//Style buttons
+			this.listing_btn.forEach(btn => btn.classList.remove('active'));
+			this.listing_btn[type].classList.add('active');
+
 			let request = undefined;
 			switch(type) {
-				case 1:
+				case 0:
 					request = '/getShotsList'; break;
-				case 2:
+				case 1:
 					request = '/getAvailableDosesList'; break;
-				case 3:
-					request = '/getAppointmentsAndDoses'; break;
-				case 4:
+				case 2:
 					request = '/getSideEffectsSexCount'; break;
 			}
 			//Request
